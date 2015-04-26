@@ -8,7 +8,7 @@ namespace CashRegister
         public UniformButton()
             : base()
         {
-            this.Font = new System.Drawing.Font(this.Font.FontFamily, this.Font.Size * 1.25f);
+            this.Font = new System.Drawing.Font(this.Font.FontFamily, this.Font.Size * 1.4f, System.Drawing.FontStyle.Bold);
         }
     }
 }

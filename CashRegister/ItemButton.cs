@@ -26,7 +26,7 @@ namespace CashRegister
             this.button.Size = size;
             this.button.BackColor = backColor;
             this.button.Enabled = false;
-            this.button.Font = new Font(this.button.Font.FontFamily, this.button.Font.Size * 1f);
+            this.button.Font = new Font(this.button.Font.FontFamily, this.button.Font.Size * 1.2f, FontStyle.Bold);
             this.button.Click += new EventHandler(ButtonOnClick);
 
             this.button.Show();
