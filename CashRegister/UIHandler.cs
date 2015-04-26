@@ -15,7 +15,7 @@ namespace CashRegister
         {
             this.mainWindow = new Form();
             mainWindow.Text = "Jarlidium Cash Register";
-            mainWindow.Width = 1300;
+            mainWindow.Width = 1400;
             mainWindow.Height = 900;
             mainWindow.FormBorderStyle = FormBorderStyle.FixedSingle;
             mainWindow.MaximizeBox = false;
@@ -319,7 +319,7 @@ namespace CashRegister
 
         public const Int32 buttonWidth = 120;
         public const Int32 buttonHSpace = buttonWidth + 20;
-        public const Int32 buttonHeight = 30;
+        public const Int32 buttonHeight = 50;
         public const Int32 buttonVSpace = buttonHeight + 10;
 
         private bool printerSelected = false;

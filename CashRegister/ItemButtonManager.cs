@@ -17,7 +17,7 @@ namespace CashRegister
             this.buttonSpacing = buttonSpacing;
             this.upperLeft = upperLeft;
 
-            this.buttonsPerColumn = 21; // (parent.Height - (2 * upperLeft.Y)) / buttonSpacing.Y;
+            this.buttonsPerColumn = (parent.Height - (2 * upperLeft.Y)) / buttonSpacing.Y;
         }
 
         public void Setup()
