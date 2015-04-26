@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Configuration;
 using System.Drawing;
+using System.Xml;
 
 namespace CashRegister
 {
@@ -22,31 +23,12 @@ namespace CashRegister
 
         public void Setup()
         {
+#if false
             int itemCount = 0;
             int[] itemNumbers = null;
             int[] itemOrders = null;
             int validItemCount = 0;
 
-#if false
-            itemCount = int.Parse(ConfigurationManager.AppSettings["ItemCount"]);
-
-            itemNumbers = new int[itemCount + 1];
-            itemOrders = new int[itemCount + 1];
-            validItemCount = itemCount;
-            for (int i = 1; i <= itemCount; i++)
-            {
-                itemNumbers[i] = i;
-                if (ConfigurationManager.AppSettings["Item" + i.ToString() + "Type"].ToLower().CompareTo("deleted") == 0)
-                {
-                    itemOrders[i] = 999999;
-                    validItemCount--;
-                }
-                else
-                {
-                    itemOrders[i] = int.Parse(ConfigurationManager.AppSettings["Item" + i.ToString() + "Sort"]);
-                }
-            }
-#else
             int itemMax = int.Parse(ConfigurationManager.AppSettings["ItemMax"]);
             itemNumbers = new int[itemMax + 1];
             itemOrders = new int[itemMax + 1];
@@ -69,7 +51,6 @@ namespace CashRegister
                     // No such item, keep going
                 }
             }
-#endif
             Array.Sort(itemOrders, itemNumbers, 1, validItemCount);
 
             for (int j = 1; j <= validItemCount; j++)
@@ -102,108 +83,63 @@ namespace CashRegister
                         listDiscountGroups.Add(s);
                     }
                 }
+            }
+#endif
 
-                switch (itemType.ToLower())
+            List<Item> itemList = new List<Item>();
+
+            XmlDocument itemFile = new XmlDocument();
+            itemFile.Load(".\\items.xml");
+            XmlNode itemsNode = itemFile.DocumentElement.SelectSingleNode("/items");
+            foreach (XmlNode itemNode in itemsNode.ChildNodes)
+            {
+                Item item = new Item(itemNode);
+                itemList.Add(item);
+            }
+
+            int locationCounter = 0;
+            foreach (Item item in itemList)
+            {
+                ItemButton buttonToAdd = null;
+                int x = this.upperLeft.X + ((locationCounter / this.buttonsPerColumn) * this.buttonSpacing.X);
+                int y = this.upperLeft.Y + ((locationCounter % this.buttonsPerColumn) * this.buttonSpacing.Y);
+                Point location = new Point(x, y);
+
+                switch (item.Type.ToLower())
                 {
                     case "fixeditem":
-                        CreateFixedItem(i, backColor, itemName, location, listDiscountGroups);
+                        buttonToAdd = new FixedItem(this.parent, this.updater, item, location, this.buttonSize);
                         break;
 
                     case "qtyitem":
-                        CreateQtyItem(i, backColor, itemName, location, listDiscountGroups);
+                        buttonToAdd = new QtyItem(this.parent, this.updater, item, location, this.buttonSize);
                         break;
 
                     case "varboxitem":
-                        CreateVarBoxItem(i, backColor, itemName, location, listDiscountGroups);
+                        buttonToAdd = new VarBoxItem(this.parent, this.updater, item, location, this.buttonSize);
                         break;
 
                     case "fixedboxitem":
-                        CreateFixedBoxItem(i, backColor, itemName, location, listDiscountGroups);
+                        buttonToAdd = new FixedBoxItem(this.parent, this.updater, item, location, this.buttonSize);
                         break;
 
                     case "miscitem":
-                        CreateMiscItem(i, backColor, itemName, location, listDiscountGroups);
+                        buttonToAdd = new MiscItem(this.parent, this.updater, item, location, this.buttonSize);
                         break;
 
                     case "fixeddetailsitem":
-                        CreateFixedDetailsItem(i, backColor, itemName, location, listDiscountGroups);
+                        buttonToAdd = new FixedDetailsItem(this.parent, this.updater, item, location, this.buttonSize);
                         break;
 
                     default:
-                        MessageBox.Show(String.Format("{0} in item {1}", itemType, i), "Unknown item type", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show("Item " + item.Name + " has unknown item type", "LOADING ITEMS", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                         break;
                 }
+                if (buttonToAdd != null)
+                {
+                    this.buttonList.Add(buttonToAdd);
+                }
             }
-        }
-
-        private void CreateFixedItem(int itemNumber, System.Drawing.Color backColor, string itemName, Point location, List<string> listDiscountGroups)
-        {
-            decimal price = decimal.Parse(ConfigurationManager.AppSettings["Item" + itemNumber.ToString() + "Price"]);
-            string revenueGroup = ConfigurationManager.AppSettings["Item" + itemNumber.ToString() + "Revgrp"];
-
-            this.buttonList.Add(new FixedItem(this.parent, this.updater, itemName, price, GetTaxable(itemNumber), revenueGroup, backColor, location, this.buttonSize, listDiscountGroups));
-        }
-
-        private void CreateQtyItem(int itemNumber, System.Drawing.Color backColor, string itemName, Point location, List<string> listDiscountGroups)
-        {
-            decimal price = decimal.Parse(ConfigurationManager.AppSettings["Item" + itemNumber.ToString() + "Price"]);
-            string revenueGroup = ConfigurationManager.AppSettings["Item" + itemNumber.ToString() + "Revgrp"];
-
-            this.buttonList.Add(new QtyItem(this.parent, this.updater, itemName, price, GetTaxable(itemNumber), revenueGroup, backColor, location, this.buttonSize, listDiscountGroups));
-        }
-
-        private void CreateVarBoxItem(int itemNumber, System.Drawing.Color backColor, string itemName, Point location, List<string> listDiscountGroups)
-        {
-            string revenueGroup = ConfigurationManager.AppSettings["Item" + itemNumber.ToString() + "Revgrp"];
-
-            this.buttonList.Add(new VarBoxItem(this.parent, this.updater, itemName, GetTaxable(itemNumber), revenueGroup, backColor, location, this.buttonSize, listDiscountGroups));
-        }
-
-        private void CreateFixedBoxItem(int itemNumber, System.Drawing.Color backColor, string itemName, Point location, List<string> listDiscountGroups)
-        {
-            decimal price = decimal.Parse(ConfigurationManager.AppSettings["Item" + itemNumber.ToString() + "Price"]);
-
-            this.buttonList.Add(new FixedBoxItem(this.parent, this.updater, itemName, price, GetTaxable(itemNumber), backColor, location, this.buttonSize, listDiscountGroups));
-        }
-
-        private void CreateMiscItem(int itemNumber, System.Drawing.Color backColor, string itemName, Point location, List<string> listDiscountGroups)
-        {
-            this.buttonList.Add(new MiscItem(this.parent, this.updater, itemName, backColor, location, this.buttonSize, listDiscountGroups));
-        }
-
-        private void CreateFixedDetailsItem(int itemNumber, System.Drawing.Color backColor, string itemName, Point location, List<string> listDiscountGroups)
-        {
-            decimal price = decimal.Parse(ConfigurationManager.AppSettings["Item" + itemNumber.ToString() + "Price"]);
-            string revenueGroup = ConfigurationManager.AppSettings["Item" + itemNumber.ToString() + "Revgrp"];
-
-            this.buttonList.Add(new FixedDetailsItem(this.parent, this.updater, itemName, price, GetTaxable(itemNumber), revenueGroup, backColor, location, this.buttonSize, listDiscountGroups));
-        }
-
-        private LineItem.TaxStatus GetTaxable(int itemNumber)
-        {
-            LineItem.TaxStatus retval = LineItem.TaxStatus.TaxYes;
-
-            string taxable = ConfigurationManager.AppSettings["Item" + itemNumber.ToString() + "Taxable"];
-            switch (taxable.ToLower())
-            {
-                case "taxable":
-                    // nothing to do here
-                    break;
-
-                case "nontaxable":
-                    retval = LineItem.TaxStatus.TaxNo;
-                    break;
-
-                case "taxincluded":
-                    retval = LineItem.TaxStatus.TaxIncluded;
-                    break;
-
-                default:
-                    MessageBox.Show(String.Format("{0} in item {1}, defaulting to taxable", taxable, itemNumber), "Unknown taxable state", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    break;
-            }
-
-            return retval;
         }
 
         public void EnableMerchButtons(bool enable)

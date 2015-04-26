@@ -61,6 +61,7 @@
     <Compile Include="FixedDetailsDialog.Designer.cs">
       <DependentUpon>FixedDetailsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Item.cs" />
     <Compile Include="MiscItemDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +159,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="items.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="jarlogo.tif">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

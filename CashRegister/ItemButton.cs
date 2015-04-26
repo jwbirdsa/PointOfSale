@@ -12,19 +12,19 @@ namespace CashRegister
             // forbidden
         }
 
-        public ItemButton(Form parent, UIHandler.UpdateDelegate updater, string name, Color backColor, Point location, Size size, List<string> listDiscountGroups)
+        public ItemButton(Form parent, UIHandler.UpdateDelegate updater, Item item, Point location, Size size)
         {
             this.parent = parent;
             this.updater = updater;
 
-            this.listDiscountGroups = listDiscountGroups;
+            this.listDiscountGroups = item.Discounts;
 
             this.button = new UniformButton();
             this.button.Parent = this.parent;
-            this.button.Text = name;
+            this.button.Text = item.Name;
             this.button.Location = location;
             this.button.Size = size;
-            this.button.BackColor = backColor;
+            this.button.BackColor = item.Color;
             this.button.Enabled = false;
             this.button.Font = new Font(this.button.Font.FontFamily, this.button.Font.Size * 1.2f, FontStyle.Bold);
             this.button.Click += new EventHandler(ButtonOnClick);
@@ -53,13 +53,13 @@ namespace CashRegister
 
     class FixedItem : ItemButton
     {
-        public FixedItem(Form parent, UIHandler.UpdateDelegate updater, string name, decimal price, LineItem.TaxStatus taxable, string revenueGroup, Color backColor, Point location, Size size, List<string> listDiscountGroups)
-            : base(parent, updater, name, backColor, location, size, listDiscountGroups)
+        public FixedItem(Form parent, UIHandler.UpdateDelegate updater, Item item, Point location, Size size)
+            : base(parent, updater, item, location, size)
         {
             // quantity is fixed at 1
-            this.priceEach = price;
-            this.taxable = taxable;
-            this.revenueGroup = revenueGroup;
+            this.priceEach = item.Price;
+            this.taxable = item.Taxable;
+            this.revenueGroup = item.RevenueGroup;
             // no details
         }
 
@@ -74,13 +74,13 @@ namespace CashRegister
 
     class QtyItem : ItemButton
     {
-        public QtyItem(Form parent, UIHandler.UpdateDelegate updater, string name, decimal priceEach, LineItem.TaxStatus taxable, string revenueGroup, Color backColor, Point location, Size size, List<string> listDiscountGroups)
-            : base(parent, updater, name, backColor, location, size, listDiscountGroups)
+        public QtyItem(Form parent, UIHandler.UpdateDelegate updater, Item item, Point location, Size size)
+            : base(parent, updater, item, location, size)
         {
             // prompt for quantity
-            this.priceEach = priceEach;
-            this.taxable = taxable;
-            this.revenueGroup = revenueGroup;
+            this.priceEach = item.Price;
+            this.taxable = item.Taxable;
+            this.revenueGroup = item.RevenueGroup;
             // no details
         }
 
@@ -102,14 +102,14 @@ namespace CashRegister
 
     class VarBoxItem : ItemButton
     {
-        public VarBoxItem(Form parent, UIHandler.UpdateDelegate updater, string name, LineItem.TaxStatus taxable, string revenueGroupIfAny, Color backColor, Point location, Size size, List<string> listDiscountGroups)
-            : base(parent, updater, name, backColor, location, size, listDiscountGroups)
+        public VarBoxItem(Form parent, UIHandler.UpdateDelegate updater, Item item, Point location, Size size)
+            : base(parent, updater, item, location, size)
         {
             // quantity is fixed at 1
             // prompt for price
-            this.taxable = taxable;
+            this.taxable = item.Taxable;
             // prompt for revenue group to override passed in
-            this.revenueGroup = revenueGroupIfAny;
+            this.revenueGroup = item.RevenueGroup;
             // prompt for details
         }
 
@@ -133,12 +133,12 @@ namespace CashRegister
 
     class FixedBoxItem : ItemButton
     {
-        public FixedBoxItem(Form parent, UIHandler.UpdateDelegate updater, string name, decimal priceEach, LineItem.TaxStatus taxable, Color backColor, Point location, Size size, List<string> listDiscountGroups)
-            : base(parent, updater, name, backColor, location, size, listDiscountGroups)
+        public FixedBoxItem(Form parent, UIHandler.UpdateDelegate updater, Item item, Point location, Size size)
+            : base(parent, updater, item, location, size)
         {
             // prompt for quantity
-            this.priceEach = priceEach;
-            this.taxable = taxable;
+            this.priceEach = item.Price;
+            this.taxable = item.Taxable;
             // prompt for revenue group
             // prompt for details
         }
@@ -163,8 +163,8 @@ namespace CashRegister
 
     class MiscItem : ItemButton
     {
-        public MiscItem(Form parent, UIHandler.UpdateDelegate updater, string name, Color backColor, Point location, Size size, List<string> listDiscountGroups)
-            : base(parent, updater, name, backColor, location, size, listDiscountGroups)
+        public MiscItem(Form parent, UIHandler.UpdateDelegate updater, Item item, Point location, Size size)
+            : base(parent, updater, item, location, size)
         {
             //quantity is fixed at 1
             // prompt for price
@@ -194,13 +194,13 @@ namespace CashRegister
 
     class FixedDetailsItem : ItemButton
     {
-        public FixedDetailsItem(Form parent, UIHandler.UpdateDelegate updater, string name, decimal price, LineItem.TaxStatus taxable, string revenueGroup, Color backColor, Point location, Size size, List<string> listDiscountGroups)
-            : base(parent, updater, name, backColor, location, size, listDiscountGroups)
+        public FixedDetailsItem(Form parent, UIHandler.UpdateDelegate updater, Item item, Point location, Size size)
+            : base(parent, updater, item, location, size)
         {
             // quantity is fixed at 1
-            this.priceEach = price;
-            this.taxable = taxable;
-            this.revenueGroup = revenueGroup;
+            this.priceEach = item.Price;
+            this.taxable = item.Taxable;
+            this.revenueGroup = item.RevenueGroup;
             // prompt for details
         }
 
