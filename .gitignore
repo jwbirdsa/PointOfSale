@@ -43,6 +43,9 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
+#Visual Studio stuff
+*.suo
+
 # Windows shortcuts
 *.lnk
 

@@ -129,7 +129,7 @@ namespace CashRegister
             this.totalShow2 = new Label();
             this.totalShow2.Parent = posWindow;
             this.totalShow2.ForeColor = Color.Indigo;
-            this.totalShow2.Font = new Font(FontFamily.GenericMonospace, 27f, FontStyle.Bold);
+            this.totalShow2.Font = new Font(FontFamily.GenericMonospace, 50f, FontStyle.Bold);
 
             g = this.totalShow2.CreateGraphics();
             Int32 dollarsHeight = (Int32)g.MeasureString("00000.00", this.totalShow2.Font).Height;
@@ -144,17 +144,20 @@ namespace CashRegister
             Label totalLabel2 = new Label();
             totalLabel2.Parent = posWindow;
             totalLabel2.ForeColor = this.totalShow2.ForeColor;
-            totalLabel2.Font = new Font(FontFamily.GenericMonospace, 12f, FontStyle.Bold);
-            totalLabel2.Location = new Point(leftSide, this.totalShow2.Top - dollarsHeight);
+            totalLabel2.Font = new Font(FontFamily.GenericMonospace, 20f, FontStyle.Bold);
+            g = totalLabel2.CreateGraphics();
+            Int32 captionHeight = (Int32)g.MeasureString("total $", totalLabel2.Font).Height;
+            g.Dispose();
+            totalLabel2.Location = new Point(leftSide, this.totalShow2.Top - captionHeight);
             totalLabel2.Width = dollarsWidth;
-            totalLabel2.Height = dollarsHeight;
-            totalLabel2.Text = "\ntotal $";
+            totalLabel2.Height = captionHeight;
+            totalLabel2.Text = "total $";
 
             // Create the tax display above the total display
             this.taxShow2 = new Label();
             this.taxShow2.Parent = posWindow;
             this.taxShow2.ForeColor = this.totalShow2.ForeColor;
-            this.taxShow2.Font = new Font(FontFamily.GenericMonospace, 27f);
+            this.taxShow2.Font = new Font(FontFamily.GenericMonospace, 40f);
             this.taxShow2.Location = new Point(leftSide, totalLabel2.Top - dollarsHeight);
             this.taxShow2.Width = dollarsWidth;
             this.taxShow2.Height = dollarsHeight;
@@ -164,17 +167,17 @@ namespace CashRegister
             Label taxLabel2 = new Label();
             taxLabel2.Parent = posWindow;
             taxLabel2.ForeColor = this.totalShow2.ForeColor;
-            taxLabel2.Font = new Font(FontFamily.GenericMonospace, 12f);
-            taxLabel2.Location = new Point(leftSide, this.taxShow2.Top - dollarsHeight);
+            taxLabel2.Font = new Font(FontFamily.GenericMonospace, 20f);
+            taxLabel2.Location = new Point(leftSide, this.taxShow2.Top - captionHeight);
             taxLabel2.Width = dollarsWidth;
-            taxLabel2.Height = dollarsHeight;
-            taxLabel2.Text = "\ntax @ " + Utilities.PercentageString(Utilities.GetTaxRate(), 1) + "%";
+            taxLabel2.Height = captionHeight;
+            taxLabel2.Text = "tax @ " + Utilities.PercentageString(Utilities.GetTaxRate(), 1) + "%";
 
             // Create the subtotal display above the tax display
             this.subShow2 = new Label();
             this.subShow2.Parent = posWindow;
             this.subShow2.ForeColor = this.totalShow2.ForeColor;
-            this.subShow2.Font = new Font(FontFamily.GenericMonospace, 27f);
+            this.subShow2.Font = new Font(FontFamily.GenericMonospace, 40f);
             this.subShow2.Location = new Point(leftSide, taxLabel2.Top - dollarsHeight);
             this.subShow2.Width = dollarsWidth;
             this.subShow2.Height = dollarsHeight;
@@ -184,11 +187,11 @@ namespace CashRegister
             Label subLabel2 = new Label();
             subLabel2.Parent = posWindow;
             subLabel2.ForeColor = this.totalShow2.ForeColor;
-            subLabel2.Font = new Font(FontFamily.GenericMonospace, 12f);
-            subLabel2.Location = new Point(leftSide, this.subShow2.Top - dollarsHeight);
+            subLabel2.Font = new Font(FontFamily.GenericMonospace, 20f);
+            subLabel2.Location = new Point(leftSide, this.subShow2.Top - captionHeight);
             subLabel2.Width = dollarsWidth;
-            subLabel2.Height = dollarsHeight;
-            subLabel2.Text = "\nsubtotal $";
+            subLabel2.Height = captionHeight;
+            subLabel2.Text = "subtotal $";
 
             // Put up the logo
             PictureBox logoBox = new PictureBox();
