@@ -19,40 +19,45 @@ namespace CashRegister
 
         public Item(XmlNode source)
         {
-            this.Name = source.Attributes["name"].InnerText;
-            if (this.Name == null)
+            XmlNode dummyNode = source.Attributes["name"];
+            if (dummyNode != null)
+            {
+                this.Name = dummyNode.InnerText;
+            }
+            else
             {
                 MessageBox.Show("Nameless item!", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
-            this.Type = source.Attributes["type"].InnerText;
-            if (this.Type == null)
+            dummyNode = source.Attributes["type"];
+            if (dummyNode != null)
+            {
+                this.Type = dummyNode.InnerText;
+            }
+            else
             {
                 MessageBox.Show("Item " + this.Name + " does not have a type", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                 return;
             }
 
-            string dummy = source.Attributes["color"].InnerText;
+            dummyNode = source.Attributes["color"];
             int hexColor = 0x00FFFFFF; // default color
-            if (dummy != null)
+            if (dummyNode != null)
             {
-                hexColor = int.Parse(dummy, System.Globalization.NumberStyles.AllowHexSpecifier);
+                hexColor = int.Parse(dummyNode.InnerText, System.Globalization.NumberStyles.AllowHexSpecifier);
             }
             this.Color = System.Drawing.Color.FromArgb(hexColor);
 
             this.Discounts = new List<string>();
-            dummy = source.Attributes["discounts"].InnerText;
-            if (dummy != null)
+            dummyNode = source.Attributes["discounts"];
+            if (dummyNode != null)
             {
-                if (dummy != null)
+                char[] delimiters = { ',' };
+                string[] discountArray = dummyNode.InnerText.Split(delimiters);
+                foreach (string s in discountArray)
                 {
-                    char[] delimiters = { ',' };
-                    string[] discountArray = dummy.Split(delimiters);
-                    foreach (string s in discountArray)
-                    {
-                        this.Discounts.Add(s);
-                    }
+                    this.Discounts.Add(s);
                 }
             }
             else
@@ -60,43 +65,49 @@ namespace CashRegister
                 // Default to an empty list
             }
 
-            dummy = source.Attributes["price"].InnerText;
-            if (dummy != null)
+            dummyNode = source.Attributes["price"];
+            if (dummyNode != null)
             {
-                this.Price = decimal.Parse(dummy);
+                this.Price = decimal.Parse(dummyNode.InnerText);
             }
             else
             {
                 MessageBox.Show("Item " + this.Name + " does not have a price", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 
-            this.RevenueGroup = source.Attributes["revenuegroup"].InnerText;
-            if (this.RevenueGroup == null)
+            dummyNode = source.Attributes["revenuegroup"];
+            if (dummyNode != null)
+            {
+                this.RevenueGroup = dummyNode.InnerText;
+            }
+            else
             {
                 MessageBox.Show("Item " + this.Name + " does not have a revenue group", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
 
             this.Taxable = LineItem.TaxStatus.TaxYes;
-            dummy = source.Attributes["taxable"].InnerText;
-            switch (dummy.ToLower())
+            dummyNode = source.Attributes["taxable"];
+            if (dummyNode != null)
             {
-                case "taxable":
-                    // nothing to do here
-                    break;
+                switch (dummyNode.InnerText.ToLower())
+                {
+                    case "taxable":
+                        // nothing to do here
+                        break;
 
-                case "nontaxable":
-                    this.Taxable = LineItem.TaxStatus.TaxNo;
-                    break;
+                    case "nontaxable":
+                        this.Taxable = LineItem.TaxStatus.TaxNo;
+                        break;
 
-                case "taxincluded":
-                    this.Taxable = LineItem.TaxStatus.TaxIncluded;
-                    break;
+                    case "taxincluded":
+                        this.Taxable = LineItem.TaxStatus.TaxIncluded;
+                        break;
 
-                default:
-                    MessageBox.Show("Item " + this.Name + " defaulting to taxable", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                    break;
+                    default:
+                        MessageBox.Show("Item " + this.Name + " defaulting to taxable", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        break;
+                }
             }
-
         }
     }
 }

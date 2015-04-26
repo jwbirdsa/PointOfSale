@@ -91,7 +91,7 @@ namespace CashRegister
             XmlDocument itemFile = new XmlDocument();
             itemFile.Load(".\\items.xml");
             XmlNode itemsNode = itemFile.DocumentElement.SelectSingleNode("/items");
-            foreach (XmlNode itemNode in itemsNode.ChildNodes)
+            foreach (XmlNode itemNode in itemsNode)
             {
                 Item item = new Item(itemNode);
                 itemList.Add(item);
@@ -107,7 +107,7 @@ namespace CashRegister
 
                 switch (item.Type.ToLower())
                 {
-                    case "fixeditem":
+                    case "fixed":
                         buttonToAdd = new FixedItem(this.parent, this.updater, item, location, this.buttonSize);
                         break;
 
@@ -138,6 +138,7 @@ namespace CashRegister
                 if (buttonToAdd != null)
                 {
                     this.buttonList.Add(buttonToAdd);
+                    locationCounter++;
                 }
             }
         }
