@@ -75,7 +75,8 @@ namespace CashRegister
             }
             else
             {
-                MessageBox.Show("Item " + this.Name + " does not have a price", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                // Normally means a variable-price item
+                this.Price = 0.00M;
             }
 
             dummyNode = source.Attributes["revenuegroup"];
@@ -85,7 +86,8 @@ namespace CashRegister
             }
             else if (this.RevenueGroup == null)
             {
-                MessageBox.Show("Item " + this.Name + " does not have a revenue group", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                // One of the dialogbox items
+                this.RevenueGroup = "Jarlidium";
             }
 
             dummyNode = source.Attributes["taxable"];
