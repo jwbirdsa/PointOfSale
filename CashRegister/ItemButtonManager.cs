@@ -23,69 +23,6 @@ namespace CashRegister
 
         public void Setup()
         {
-#if false
-            int itemCount = 0;
-            int[] itemNumbers = null;
-            int[] itemOrders = null;
-            int validItemCount = 0;
-
-            int itemMax = int.Parse(ConfigurationManager.AppSettings["ItemMax"]);
-            itemNumbers = new int[itemMax + 1];
-            itemOrders = new int[itemMax + 1];
-            for (int i = 1; i <= itemMax; i++)
-            {
-                try
-                {
-                    string dummy = ConfigurationManager.AppSettings["Item" + i.ToString() + "Type"];
-                    if (dummy != null)
-                    {
-                        // if we get here, then the item exists
-                        itemCount++;
-                        validItemCount++;
-                        itemNumbers[validItemCount] = i;
-                        itemOrders[validItemCount] = int.Parse(ConfigurationManager.AppSettings["Item" + i.ToString() + "Sort"]);
-                    }
-                }
-                catch (ConfigurationErrorsException)
-                {
-                    // No such item, keep going
-                }
-            }
-            Array.Sort(itemOrders, itemNumbers, 1, validItemCount);
-
-            for (int j = 1; j <= validItemCount; j++)
-            {
-                int i = itemNumbers[j];
-
-                string itemType = ConfigurationManager.AppSettings["Item" + i.ToString() + "Type"];
-                if (itemType.ToLower().CompareTo("spacer") == 0)
-                {
-                    continue;
-                }
-
-                int hexColor = int.Parse(ConfigurationManager.AppSettings["Item" + i.ToString() + "Color"], System.Globalization.NumberStyles.AllowHexSpecifier);
-                System.Drawing.Color backColor = System.Drawing.Color.FromArgb(hexColor);
-
-                string itemName = ConfigurationManager.AppSettings["Item" + i.ToString() + "Name"];
-
-                int x = this.upperLeft.X + (((j - 1) / this.buttonsPerColumn) * this.buttonSpacing.X);
-                int y = this.upperLeft.Y + (((j - 1) % this.buttonsPerColumn) * this.buttonSpacing.Y);
-                Point location = new Point(x, y);
-
-                string itemDiscountGroups = ConfigurationManager.AppSettings["Item" + i.ToString() + "Discounts"];
-                List<string> listDiscountGroups = new List<string>();
-                if (itemDiscountGroups != null)
-                {
-                    char[] delimiters = { ',' };
-                    string[] discountArray = itemDiscountGroups.Split(delimiters);
-                    foreach (string s in discountArray)
-                    {
-                        listDiscountGroups.Add(s);
-                    }
-                }
-            }
-#endif
-
             List<Item> itemList = new List<Item>();
 
             XmlDocument itemFile = new XmlDocument();

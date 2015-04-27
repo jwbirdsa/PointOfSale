@@ -25,5 +25,10 @@ namespace CashRegister
         }
 
         public string Details { get { return this.tDetails.Text; } }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
