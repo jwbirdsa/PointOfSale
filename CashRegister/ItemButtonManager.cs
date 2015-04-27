@@ -91,10 +91,14 @@ namespace CashRegister
             XmlDocument itemFile = new XmlDocument();
             itemFile.Load(".\\items.xml");
             XmlNode itemsNode = itemFile.DocumentElement.SelectSingleNode("/items");
-            foreach (XmlNode itemNode in itemsNode)
+            foreach (XmlNode itemGroupNode in itemsNode)
             {
-                Item item = new Item(itemNode);
-                itemList.Add(item);
+                ItemGroup group = new ItemGroup(itemGroupNode);
+                foreach (XmlNode itemNode in itemGroupNode.ChildNodes)
+                {
+                    Item item = new Item(itemNode, group);
+                    itemList.Add(item);
+                }
             }
 
             int locationCounter = 0;

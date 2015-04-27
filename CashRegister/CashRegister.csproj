@@ -62,6 +62,7 @@
       <DependentUpon>FixedDetailsDialog.cs</DependentUpon>
     </Compile>
     <Compile Include="Item.cs" />
+    <Compile Include="ItemGroup.cs" />
     <Compile Include="MiscItemDialog.cs">
       <SubType>Form</SubType>
     </Compile>

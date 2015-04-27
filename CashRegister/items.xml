@@ -1,350 +1,73 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <items>
-  <item type="fixed" 
-  color="FFDDAAAA"
-  name="NAF 23"
-  price="1.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFDDAAAA"
-  name="NAF 30"
-  price="18.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFDDAAAA"
-  name="NAF 31"
-  price="18.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="FixedDetailsItem"
-  color="FFDDBBBB"
-  name="NAF subs 1yr"
-  price="40.00"
-  taxable="nontaxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="FixedDetailsItem"
-  color="FFDDBBBB"
-  name="NAF subs 2yr"
-  price="75.00"
-  taxable="nontaxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFAADDAA"
-  name="ATSFOS"
-  price="10.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFAADDAA"
-  name="Happy Little Trees"
-  price="10.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFAADDAA"
-  name="Omnibus"
-  price="18.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFAADDAA"
-  name="Rooby-Roo"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFCC8888"
-  name="YARF! v1"
-  price="15.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFCC8888"
-  name="YARF! v2"
-  price="15.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFCC8888"
-  name="YARF! v3"
-  price="15.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFCC8888"
-  name="YARF! any two"
-  price="25.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFCC8888"
-  name="YARF! trio"
-  price="30.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FF77CCCC"
-  name="Scavengers 1"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF77CCCC"
-  name="Scavengers 2"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF77CCCC"
-  name="Scavengers 3"
-  price="5.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF77CCCC"
-  name="Scavengers 4"
-  price="5.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF77CCCC"
-  name="Scavengers PAK"
-  price="15.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFCC88CC"
-  name="XU 3"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FFCC88CC"
-  name="XU 4"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FFCC88CC"
-  name="XU 5"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FFCC88CC"
-  name="XU 6"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FFCC88CC"
-  name="XU 7"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF99CCCC"
-  name="Squeak! 1"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF99CCCC"
-  name="Squeak! 2"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF99CCCC"
-  name="Squeak! 3"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF99CCCC"
-  name="Squeak! 4"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF99CCCC"
-  name="Squeak! 5"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FF99CCCC"
-  name="Squeak! 6"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FFCC88AA"
-  name="WCA8 Starlite"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FFCC88AA"
-  name="WCA9 Murry"
-  price="4.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  discounts="comicsized"
-  />
-  <item type="fixed" 
-  color="FFCC88AA"
-  name="WCA10 DEWEY"
-  price="10.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFAADDAA"
-  name="DOL WCA6 Spring 3"
-  price="1.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFAADDAA"
-  name="DOL WCA7 Spring 4"
-  price="1.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFDDAADD"
-  name="Endtown vols3+4"
-  price="20.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFDDAADD"
-  name="Endtown book1"
-  price="20.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFDDAADD"
-  name="Endtown book2"
-  price="20.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFDDAADD"
-  name="Endtown book1+2"
-  price="35.00"
-  taxable="taxable"
-  revenuegroup="Jarlidium"
-  />
-  <item type="fixed" 
-  color="FFAAAAEE"
-  name="1 badge"
-  price="5.00"
-  taxable="taxable"
-  revenuegroup="Dan"
-  />
-  <item type="fixed" 
-  color="FFAAAAEE"
-  name="2 badges"
-  price="10.00"
-  taxable="taxable"
-  revenuegroup="Dan"
-  />
-  <item type="fixed" 
-  color="FFAAAAEE"
-  name="3 for 2 badges"
-  price="10.00"
-  taxable="taxable"
-  revenuegroup="Dan"
-  />
-  <item type="fixed" 
-  color="FFAAAAEE"
-  name="3for2 w lanyard"
-  price="10.00"
-  taxable="taxable"
-  revenuegroup="Dan"
-  />
-  <item type="fixed" 
-  color="FFAAAAEE"
-  name="lanyard"
-  price="1.00"
-  taxable="taxable"
-  revenuegroup="Dan"
-  />
-  <item type="fixed" 
-  color="FFAAAAEE"
-  name="original"
-  price="5.00"
-  taxable="taxable"
-  revenuegroup="Dan"
-  />
-  <item type="fixed" 
-  color="FFAAAAEE"
-  name="bargain badge"
-  price="2.00"
-  taxable="taxable"
-  revenuegroup="Dan"
-  />
-  <item type="MiscItem"
-  color="FFBBBBBB"
-  name="MISC ITEM"
-  />
-  <item type="MiscItem"
-  color="FFAA1111"
-  name="REFUND"
-  />
+  <itemgroup name="NAF group" type="fixed" color="FFDDAAAA" taxable="taxable" revenuegroup="Jarlidium">
+    <item name="NAF 23" price="1.00" />
+    <item name="NAF 30" price="18.00" />
+    <item name="NAF 31" price="18.00" />
+  </itemgroup>
+  <itemgroup name="NAF subs group" type="fixeddetailsitem" color="FFDDBBBB" taxable="taxable" revenuegroup="Jarlidium">
+    <item name="NAF subs 1yr" price="40.00" />
+    <item name="NAF subs 2yr" price="75.00" />
+  </itemgroup>
+  <itemgroup name="Flinters books" type="fixed" color="FFAADDAA" taxable="taxable" revenuegroup="Jarlidium">
+    <item name="ATSFOS" price="10.00" />
+    <item name="Happy Little Trees" price="10.00" />
+    <item name="Omnibus" price="18.00" />
+    <item name="Rooby-Roo" price="4.00" discounts="comicsized"/>
+  </itemgroup>
+  <itemgroup name="YARF" type="fixed" color="FFCC8888" taxable="taxable" revenuegroup="Jarlidium">
+    <item name="YARF! v1" price="15.00" />
+    <item name="YARF! v2" price="15.00" />
+    <item name="YARF! v3" price="15.00" />
+    <item name="YARF! any two" price="25.00" />
+    <item name="YARF! trio" price="30.00" />
+  </itemgroup>
+  <itemgroup name="Scavengers" type="fixed" color="FF77CCCC" taxable="taxable" revenuegroup="Jarlidium" discounts="comicsized">
+    <item name="Scavengers 1" price="4.00" />
+    <item name="Scavengers 2" price="4.00" />
+    <item name="Scavengers 3" price="5.00" />
+    <item name="Scavengers 4" price="5.00" />
+    <item name="Scavengers PAK" price="15.00" discounts=""/>
+  </itemgroup>
+  <itemgroup name="XU" type="fixed" color="FFCC88CC" taxable="taxable" revenuegroup="Jarlidium" discounts="comicsized">
+    <item name="XU 3" price="4.00" />
+    <item name="XU 4" price="4.00" />
+    <item name="XU 5" price="4.00" />
+    <item name="XU 6" price="4.00" />
+    <item name="XU 7" price="4.00" />
+  </itemgroup>
+  <itemgroup name="Squeak" type="fixed" color="FFCC88CC" taxable="taxable" revenuegroup="Jarlidium" discounts="comicsized">
+    <item name="Squeak! 1" price="4.00" />
+    <item name="Squeak! 2" price="4.00" />
+    <item name="Squeak! 3" price="4.00" />
+    <item name="Squeak! 4" price="4.00" />
+    <item name="Squeak! 5" price="4.00" />
+    <item name="Squeak! 6" price="4.00" />
+  </itemgroup>
+  <itemgroup name="Artzone and WCA" type="fixed" color="FFCC88AA" taxable="taxable" revenuegroup="Jarlidium">
+    <item name="WCA8 Starlite" price="4.00" discounts="comicsized" />
+    <item name="WCA9 Murry" price="4.00" discounts="comicsized" />
+    <item name="WCA10 DEWEY" price="10.00" />
+    <item name="DOL WCA6 Spring 3" price="1.00" color="FFAADDAA" />
+    <item name="DOL WCA7 Spring 4" price="1.00" color="FFAADDAA" />
+  </itemgroup>
+  <itemgroup name="Endtown" type="fixed" color="FFDDAADD" taxable="taxable" revenuegroup="Jarlidium">
+    <item name="Endtown vols3+4" price="20.00" />
+    <item name="Endtown book1" price="20.00" />
+    <item name="Endtown book2" price="20.00" />
+    <item name="Endtown book1+2" price="35.00" />
+  </itemgroup>
+  <itemgroup name="Flinters" type="fixed" color="FFAAAAEE" taxable="taxable" revenuegroup="Dan">
+    <item name="1 badge" price="5.00" />
+    <item name="2 badges" price="10.00" />
+    <item name="3 for 2 badges" price="10.00" />
+    <item name="3for2 w lanyard" price="10.00" />
+    <item name="lanyard" price="1.00" />
+    <item name="original" price="5.00" />
+    <item name="bargain badge" price="2.00" />
+  </itemgroup>
+  <itemgroup name="Utilities" type="miscitem">
+    <item name="MISC ITEM" color="FFBBBBBB" />
+    <item name="REFUND" color="FFAA1111" />
+  </itemgroup>
 </items>

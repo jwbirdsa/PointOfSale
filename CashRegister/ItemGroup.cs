@@ -1,65 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using System.Text;
 using System.Xml;
 
 namespace CashRegister
 {
-    class Item
+    class ItemGroup
     {
-        public string Name { get; private set; }
         public string Type { get; private set; }
         public System.Drawing.Color Color { get; private set; }
         public List<string> Discounts { get; private set; }
-        public decimal Price { get; private set; }
         public string RevenueGroup { get; private set; }
         public LineItem.TaxStatus Taxable { get; private set; }
 
-        public Item(XmlNode source, ItemGroup group)
+        public ItemGroup(XmlNode source)
         {
-            XmlNode dummyNode = source.Attributes["name"];
-            if (dummyNode != null)
-            {
-                this.Name = dummyNode.InnerText;
-            }
-            else
-            {
-                MessageBox.Show("Nameless item!", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
-
-            // Default pretty much everything from the group.
-            this.Type = group.Type;
-            this.Color = group.Color;
-            this.Discounts = new List<string>(group.Discounts);
-            this.RevenueGroup = group.RevenueGroup;
-            this.Taxable = group.Taxable;
-
-            dummyNode = source.Attributes["type"];
+            XmlNode dummyNode = source.Attributes["type"];
+            this.Type = null;
             if (dummyNode != null)
             {
                 this.Type = dummyNode.InnerText;
             }
-            else if (this.Type == null)
-            {
-                MessageBox.Show("Item " + this.Name + " does not have a type", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                return;
-            }
 
             dummyNode = source.Attributes["color"];
+            int hexColor = 0x00FFFFFF; // default color
             if (dummyNode != null)
             {
-                int hexColor = 0x00FFFFFF; // default color
                 hexColor = int.Parse(dummyNode.InnerText, System.Globalization.NumberStyles.AllowHexSpecifier);
-                this.Color = System.Drawing.Color.FromArgb(hexColor);
             }
+            this.Color = System.Drawing.Color.FromArgb(hexColor);
 
+            this.Discounts = new List<string>();
             dummyNode = source.Attributes["discounts"];
             if (dummyNode != null)
             {
-                this.Discounts = new List<string>();
                 char[] delimiters = { ',' };
                 string[] discountArray = dummyNode.InnerText.Split(delimiters);
                 foreach (string s in discountArray)
@@ -68,26 +44,14 @@ namespace CashRegister
                 }
             }
 
-            dummyNode = source.Attributes["price"];
-            if (dummyNode != null)
-            {
-                this.Price = decimal.Parse(dummyNode.InnerText);
-            }
-            else
-            {
-                MessageBox.Show("Item " + this.Name + " does not have a price", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
-
             dummyNode = source.Attributes["revenuegroup"];
+            this.RevenueGroup = null;
             if (dummyNode != null)
             {
                 this.RevenueGroup = dummyNode.InnerText;
             }
-            else if (this.RevenueGroup == null)
-            {
-                MessageBox.Show("Item " + this.Name + " does not have a revenue group", "ITEM LOADING", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-            }
 
+            this.Taxable = LineItem.TaxStatus.TaxYes;
             dummyNode = source.Attributes["taxable"];
             if (dummyNode != null)
             {
