@@ -61,6 +61,12 @@
     <Compile Include="FixedDetailsDialog.Designer.cs">
       <DependentUpon>FixedDetailsDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="ChangeDue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChangeDue.Designer.cs">
+      <DependentUpon>ChangeDue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Item.cs" />
     <Compile Include="ItemGroup.cs" />
     <Compile Include="MiscItemDialog.cs">
@@ -112,6 +118,9 @@
     <Compile Include="VarBoxDialog.Designer.cs">
       <DependentUpon>VarBoxDialog.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ChangeDue.resx">
+      <DependentUpon>ChangeDue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FixedBoxDialog.resx">
       <DependentUpon>FixedBoxDialog.cs</DependentUpon>
     </EmbeddedResource>

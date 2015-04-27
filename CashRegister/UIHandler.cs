@@ -206,7 +206,9 @@ namespace CashRegister
 
                 Purchase.WriteLogs(timeOfPurchase);
 
-                MessageBox.Show((dlg.TenderedCash - Purchase.TotalDue()).ToString(), "Change Due");
+                ChangeDue change = new ChangeDue(dlg.TenderedCash - Purchase.TotalDue());
+                change.StartPosition = FormStartPosition.CenterParent;
+                dr = change.ShowDialog(this.mainWindow);
 
                 this.tapeDisplay.Clear();
                 SetButtonState(ButtonStates.IDLE);
@@ -233,7 +235,9 @@ namespace CashRegister
 
                 Purchase.WriteLogs(timeOfPurchase);
 
-                MessageBox.Show((dlg.TenderedAmount - Purchase.TotalDue()).ToString(), "Change Due");
+                ChangeDue change = new ChangeDue(dlg.TenderedAmount - Purchase.TotalDue());
+                change.StartPosition = FormStartPosition.CenterParent;
+                dr = change.ShowDialog(this.mainWindow);
 
                 this.tapeDisplay.Clear();
                 SetButtonState(ButtonStates.IDLE);
