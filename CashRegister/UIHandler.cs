@@ -155,14 +155,14 @@ namespace CashRegister
             this.buttonManager.Setup();
             DiscountManager.Setup();
 
-            SetButtonState(ButtonStates.INITIALIZING);
+            SetUserInterfaceState(UserInterfaceStates.INITIALIZING);
         }
 
         private void StartPurchase(object sender, EventArgs e)
         {
             Purchase.Reset();
             this.tapeDisplay.Clear();
-            SetButtonState(ButtonStates.STARTED);
+            SetUserInterfaceState(UserInterfaceStates.STARTED);
         }
 
         private void EditPurchase(object sender, EventArgs e)
@@ -182,7 +182,7 @@ namespace CashRegister
             {
                 Purchase.Reset();
                 this.tapeDisplay.Clear();
-                SetButtonState(ButtonStates.IDLE);
+                SetUserInterfaceState(UserInterfaceStates.IDLE);
             }
             else
             {
@@ -192,7 +192,7 @@ namespace CashRegister
 
         private void TenderCash(object sender, EventArgs e)
         {
-            SetButtonState(ButtonStates.TENDERING);
+            SetUserInterfaceState(UserInterfaceStates.TENDERING);
 
             TenderDialog dlg = new TenderDialog();
             dlg.StartPosition = FormStartPosition.CenterParent;
@@ -211,17 +211,17 @@ namespace CashRegister
                 dr = change.ShowDialog(this.mainWindow);
 
                 this.tapeDisplay.Clear();
-                SetButtonState(ButtonStates.IDLE);
+                SetUserInterfaceState(UserInterfaceStates.IDLE);
             }
             else
             {
-                SetButtonState(ButtonStates.INPROGRESS);
+                SetUserInterfaceState(UserInterfaceStates.INPROGRESS);
             }
         }
 
         private void TenderCheck(object sender, EventArgs e)
         {
-            SetButtonState(ButtonStates.TENDERING);
+            SetUserInterfaceState(UserInterfaceStates.TENDERING);
 
             TwoTenderDialog dlg = new TwoTenderDialog();
             dlg.StartPosition = FormStartPosition.CenterParent;
@@ -240,17 +240,17 @@ namespace CashRegister
                 dr = change.ShowDialog(this.mainWindow);
 
                 this.tapeDisplay.Clear();
-                SetButtonState(ButtonStates.IDLE);
+                SetUserInterfaceState(UserInterfaceStates.IDLE);
             }
             else
             {
-                SetButtonState(ButtonStates.INPROGRESS);
+                SetUserInterfaceState(UserInterfaceStates.INPROGRESS);
             }
         }
 
         private void TenderCredit(object sender, EventArgs e)
         {
-            SetButtonState(ButtonStates.TENDERING);
+            SetUserInterfaceState(UserInterfaceStates.TENDERING);
 
             TenderDialog dlg = new TenderDialog();
             dlg.StartPosition = FormStartPosition.CenterParent;
@@ -266,11 +266,11 @@ namespace CashRegister
                 Purchase.WriteLogs(timeOfPurchase);
 
                 this.tapeDisplay.Clear();
-                SetButtonState(ButtonStates.IDLE);
+                SetUserInterfaceState(UserInterfaceStates.IDLE);
             }
             else
             {
-                SetButtonState(ButtonStates.INPROGRESS);
+                SetUserInterfaceState(UserInterfaceStates.INPROGRESS);
             }
         }
 
@@ -284,7 +284,7 @@ namespace CashRegister
         {
             this.tapeDisplay.Clear();
             Purchase.Reset();
-            SetButtonState(ButtonStates.IDLE);
+            SetUserInterfaceState(UserInterfaceStates.IDLE);
         }
 
         private void ReprintLastReceipt(object sender, EventArgs e)
@@ -304,7 +304,8 @@ namespace CashRegister
             this.printerSelected = this.printer.selectPrinter(this.mainWindow);
             if (this.printerSelected)
             {
-                SetButtonState(ButtonStates.IDLE);
+                SetUserInterfaceState(UserInterfaceStates.IDLE);
+
             }
         }
 
@@ -313,7 +314,7 @@ namespace CashRegister
         public void MerchandiseAdded()
         {
             this.tapeDisplay.PurchaseUpdated();
-            SetButtonState(ButtonStates.INPROGRESS);
+            SetUserInterfaceState(UserInterfaceStates.INPROGRESS);
         }
 
         private Form mainWindow;
@@ -330,17 +331,17 @@ namespace CashRegister
 
         private UniformButton startPurchase, editPurchase, tenderCash, tenderCheck, tenderCredit, cut, noSale, openDrawer, reprintLastReceipt;
 
-        private enum ButtonStates { INITIALIZING, IDLE, STARTED, INPROGRESS, TENDERING };
-        private ButtonStates currentState;
+        private enum UserInterfaceStates { INITIALIZING, IDLE, STARTED, INPROGRESS, TENDERING };
+        private UserInterfaceStates currentState;
         private ItemButtonManager buttonManager;
 
-        private void SetButtonState(ButtonStates newState)
+        private void SetUserInterfaceState(UserInterfaceStates newState)
         {
             this.currentState = newState;
 
             switch (this.currentState)
             {
-                case ButtonStates.INITIALIZING:
+                case UserInterfaceStates.INITIALIZING:
                     this.startPurchase.Enabled = false;
                     this.editPurchase.Enabled = false;
                     this.tenderCash.Enabled = false;
@@ -351,9 +352,10 @@ namespace CashRegister
                     this.openDrawer.Enabled = false;
                     this.reprintLastReceipt.Enabled = false;
                     this.buttonManager.EnableMerchButtons(false);
+                    this.mainWindow.BackColor = Color.Red;
                     break;
 
-                case ButtonStates.IDLE:
+                case UserInterfaceStates.IDLE:
                     this.startPurchase.Enabled = true;
                     this.editPurchase.Enabled = false;
                     this.tenderCash.Enabled = false;
@@ -364,9 +366,10 @@ namespace CashRegister
                     this.openDrawer.Enabled = true;
                     this.reprintLastReceipt.Enabled = true;
                     this.buttonManager.EnableMerchButtons(false);
+                    this.mainWindow.BackColor = Color.LightGray;
                     break;
 
-                case ButtonStates.STARTED:
+                case UserInterfaceStates.STARTED:
                     this.startPurchase.Enabled = false;
                     this.editPurchase.Enabled = false;
                     this.tenderCash.Enabled = false;
@@ -377,9 +380,10 @@ namespace CashRegister
                     this.openDrawer.Enabled = true;
                     this.reprintLastReceipt.Enabled = false;
                     this.buttonManager.EnableMerchButtons(true);
+                    this.mainWindow.BackColor = Color.LightGreen;
                     break;
 
-                case ButtonStates.INPROGRESS:
+                case UserInterfaceStates.INPROGRESS:
                     this.startPurchase.Enabled = false;
                     this.editPurchase.Enabled = true;
                     this.tenderCash.Enabled = true;
@@ -390,9 +394,10 @@ namespace CashRegister
                     this.openDrawer.Enabled = true;
                     this.reprintLastReceipt.Enabled = false;
                     this.buttonManager.EnableMerchButtons(true);
+                    this.mainWindow.BackColor = Color.LightGreen;
                     break;
 
-                case ButtonStates.TENDERING:
+                case UserInterfaceStates.TENDERING:
                     this.startPurchase.Enabled = false;
                     this.editPurchase.Enabled = false;
                     this.tenderCash.Enabled = false;
@@ -403,6 +408,7 @@ namespace CashRegister
                     this.openDrawer.Enabled = true;
                     this.reprintLastReceipt.Enabled = false;
                     this.buttonManager.EnableMerchButtons(false);
+                    this.mainWindow.BackColor = Color.Yellow;
                     break;
             }
         }
